@@ -4,3 +4,6 @@
 .vs/
 *.user
 *.suo
+
+# SDK preview upload artifact
+About/.steam-preview.jpg
