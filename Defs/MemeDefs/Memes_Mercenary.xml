@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- The Mercenary meme. A secular warrior-company identity whose morale rides on completing
+       contracts (Isekai guild bounties); the mood mechanic itself lives in the WR_MercenaryMorale
+       situational thought, driven by the MercenaryMoraleTracker game component. -->
+  <MemeDef>
+    <defName>WR_Mercenary</defName>
+    <label>mercenary</label>
+    <description>War is a trade, and a good contract is its own reward. This company lives for the next bounty. A steady run of contracts keeps the band content and sharp, while a long stretch without paying work leaves everyone restless.</description>
+    <category>Normal</category>
+    <groupDef>Misc</groupDef>
+    <impact>2</impact>
+    <renderOrder>75</renderOrder>
+    <iconPath>UI/Memes/Mercenary</iconPath>
+  </MemeDef>
+
+</Defs>

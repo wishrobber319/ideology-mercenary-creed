@@ -1,0 +1,18 @@
+[b]War is a trade. Run a company that lives by it.[/b] A ready-made custom ideoligion for RimWorld's Ideology DLC: a mercenary company whose morale rides on completing contracts, wired straight into the ISEKAI RPG Leveling guild bounty board.
+
+[hr][/hr]
+[b]What's inside[/b]
+[list]
+[*][b]Contract-driven morale:[/b] completing an Isekai guild bounty lifts the whole company's mood, scaled to the rank of the job. A low-rank contract is a small boost, a high-rank one a real one, stacking up to a cap.
+[*][b]Idle hands, restless company:[/b] that morale slowly fades when the work dries up, so a band that keeps taking bounties stays sharp and content while an idle one grows sour.
+[*][b]The Raider meme, reforged:[/b] it takes the Raider ideology's mood mechanic and reworks it around honest mercenary work instead of pillaging.
+[*][b]Fully configured:[/b] name, memes, precepts, roles, apparel and narrative all built and ready, chosen from the "Modded" ideoligion group at colony start.
+[/list]
+
+[hr][/hr]
+[b]How to use it[/b]
+Pick "Mercenary Creed" from the Modded ideoligion group when you start a colony, or add the Mercenary meme when building your own ideology. Then keep your company earning its coin.
+
+A lightweight add-on, safe to add to a save. Requires the Ideology DLC, ISEKAI RPG Leveling, and the Ideoligion Framework.
+
+[i]A custom mercenary ideology for Isekai RPG Leveling: a bounty-driven morale meme and a Raider ideology alternative.[/i]

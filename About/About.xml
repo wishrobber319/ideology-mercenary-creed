@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ModMetaData>
+    <packageId>wishRobber.mercenarycreed</packageId>
+    <name>Ideology: Mercenary Creed</name>
+    <author>wishRobber</author>
+    <description>A ready-made Ideology ideoligion for a mercenary company, wired into the Isekai guild bounty system.
+
+Followers of the Mercenary creed live contract to contract. Completing an Isekai guild bounty raises the whole company's morale, scaled to the rank of the contract (a low-rank job is a small lift, a high-rank one a real boost), stacking up to a cap. That morale slowly bleeds away when the work dries up, so a company that keeps taking contracts stays sharp and content, while one sitting idle grows restless.
+
+Pick "Mercenary Creed" from the Modded ideoligion group when starting a colony, or add the Mercenary meme when building your own.
+
+Requires the Ideology DLC, Isekai RPG Leveling, and Harmony. A lightweight add-on, safe to add to a save; the ideoligion itself is chosen at colony creation like any other.</description>
+    <supportedVersions>
+        <li>1.6</li>
+    </supportedVersions>
+    <modDependencies>
+        <!-- Harmony and Ideology are declared by Ideoligion Framework (a hard dependency below),
+             so they are not repeated here; the load-order sort resolves them transitively. -->
+        <li>
+            <packageId>wishRobber.ideoligionframework</packageId>
+            <displayName>Ideology Framework</displayName>
+            <steamWorkshopUrl>steam://url/CommunityFilePage/3769638747</steamWorkshopUrl>
+        </li>
+        <li>
+            <packageId>JellyCreative.IsekaiLeveling</packageId>
+            <displayName>ISEKAI RPG LEVELING</displayName>
+            <steamWorkshopUrl>steam://url/CommunityFilePage/3657580708</steamWorkshopUrl>
+        </li>
+        <li>
+            <packageId>DankPyon.Medieval.Overhaul</packageId>
+            <displayName>Medieval Overhaul</displayName>
+            <steamWorkshopUrl>steam://url/CommunityFilePage/3219596926</steamWorkshopUrl>
+        </li>
+    </modDependencies>
+    <loadAfter>
+        <li>brrainz.harmony</li>
+        <li>Ludeon.RimWorld.Ideology</li>
+        <li>wishRobber.ideoligionframework</li>
+        <li>JellyCreative.IsekaiLeveling</li>
+        <li>DankPyon.Medieval.Overhaul</li>
+    </loadAfter>
+</ModMetaData>
