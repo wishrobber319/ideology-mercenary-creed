@@ -12,7 +12,7 @@
     <validWhileDespawned>true</validWhileDespawned>
     <stages>
       <li>
-        <label>contracts fulfilled</label>
+        <label>mercenary contracts fulfilled</label>
         <description>The company has been earning its keep. Good coin, good work, and the next bounty always waiting.</description>
         <baseMoodEffect>1</baseMoodEffect>
       </li>
