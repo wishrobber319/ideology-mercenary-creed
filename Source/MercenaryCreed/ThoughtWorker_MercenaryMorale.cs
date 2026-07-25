@@ -4,8 +4,9 @@ using Verse;
 namespace MercenaryCreed
 {
     // Gates the WR_MercenaryMorale situational thought: active only for pawns whose ideoligion carries
-    // the Mercenary meme, and only while the company actually has morale to show. The mood VALUE comes
-    // from Thought_MercenaryMorale.MoodOffset(); this worker just decides on/off.
+    // the Mercenary meme. Picks the stage by the sign of the company's morale - stage 0 (content, buff)
+    // when positive, stage 1 (restless, debuff) when negative, inactive at neutral. The mood VALUE comes
+    // from Thought_MercenaryMorale.MoodOffset().
     public class ThoughtWorker_MercenaryMorale : ThoughtWorker
     {
         private static MemeDef meme;
@@ -21,12 +22,21 @@ namespace MercenaryCreed
             }
 
             MercenaryMoraleTracker tracker = MercenaryMoraleTracker.Get();
-            if (tracker == null || tracker.MoodOffset < 1)
+            if (tracker == null)
             {
                 return ThoughtState.Inactive;
             }
 
-            return ThoughtState.ActiveAtStage(0);
+            int mood = tracker.MoodOffset;
+            if (mood >= 1)
+            {
+                return ThoughtState.ActiveAtStage(0); // content - buff
+            }
+            if (mood <= -1)
+            {
+                return ThoughtState.ActiveAtStage(1); // restless - debuff
+            }
+            return ThoughtState.Inactive;             // neutral
         }
     }
 }

@@ -4,17 +4,21 @@ using Verse;
 
 namespace MercenaryCreed
 {
-    // Holds the mercenary company's "morale" - a single colony-wide value that rises when an Isekai
-    // guild bounty is completed (by the bounty's rank) and slowly decays over time. Capped so morale can
-    // never exceed MaxMorale no matter how many bounties are stacked. Persisted; auto-instantiated by
-    // RimWorld for every game.
+    // Holds the mercenary company's "morale" - a single colony-wide value that rides from -MaxMorale
+    // (restless, no work) up to +MaxMorale (content, steady contracts). Completing an Isekai guild bounty
+    // pushes it UP by the bounty's rank; the rest of the time it drifts DOWN (restlessness). So a company
+    // that keeps taking contracts stays in the buff range, and one that lets the work dry up slides through
+    // zero into the debuff range. Persisted; auto-instantiated by RimWorld for every game.
     public class MercenaryMoraleTracker : GameComponent
     {
-        // Total combined mood cap. A single SSS bounty (+20) maxes it; lower ranks stack toward it.
+        // Bound on the swing in each direction: +MaxMorale content, -MaxMorale restless. A single SSS
+        // bounty (+20) is a full-range swing.
         public const float MaxMorale = 20f;
 
-        // How much morale bleeds off per in-game day when no new contracts come in.
-        public const float DecayPerDay = 4f;
+        // How much morale drifts DOWN per in-game day with no fresh contracts. The same rate governs both
+        // the buff fading and the debuff building - one continuous downward drift, with bounties the only
+        // thing pushing back up.
+        public const float DriftPerDay = 4f;
 
         private const int TicksPerDay = 60000;
 
@@ -26,13 +30,14 @@ namespace MercenaryCreed
 
         public static MercenaryMoraleTracker Get() => Current.Game?.GetComponent<MercenaryMoraleTracker>();
 
-        // Current mood offset shown by the situational thought (rounded, clamped).
-        public int MoodOffset => Mathf.Clamp(Mathf.RoundToInt(morale), 0, (int)MaxMorale);
+        // Current mood offset for the situational thought (rounded, clamped). Positive = content (buff),
+        // negative = restless (debuff), zero = neutral (no thought).
+        public int MoodOffset => Mathf.Clamp(Mathf.RoundToInt(morale), -(int)MaxMorale, (int)MaxMorale);
 
-        // Raise morale by the rank-scaled amount for a completed bounty, up to the cap.
+        // Raise morale by the rank-scaled amount for a completed bounty (climbs out of the debuff first).
         public void AddForRank(QuestRank rank)
         {
-            morale = Mathf.Clamp(morale + RankBonus(rank), 0f, MaxMorale);
+            morale = Mathf.Clamp(morale + RankBonus(rank), -MaxMorale, MaxMorale);
         }
 
         // Rank -> morale gained. F none, then a gentle climb that reaches the full cap at SSS.
@@ -55,12 +60,14 @@ namespace MercenaryCreed
 
         public override void GameComponentTick()
         {
-            if (morale > 0f)
+            // Constant downward drift: with no fresh contracts the company grows restless, sliding from the
+            // buff range down through zero into the debuff range, floored at -MaxMorale.
+            if (morale > -MaxMorale)
             {
-                morale -= DecayPerDay / TicksPerDay;
-                if (morale < 0f)
+                morale -= DriftPerDay / TicksPerDay;
+                if (morale < -MaxMorale)
                 {
-                    morale = 0f;
+                    morale = -MaxMorale;
                 }
             }
         }
